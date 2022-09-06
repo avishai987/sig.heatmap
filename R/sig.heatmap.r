@@ -4,17 +4,17 @@
 #' @param title title
 #' @return pheatmap
 #' @details DETAILS
-#' @examples 
+#' @examples
 #' \dontrun{
 #' if(interactive()){
 #'  #EXAMPLE1
 #'  }
 #' }
 #' @rdname sig_heatmap
-#' @export 
-#' 
+#' @export
+#'
 sig_heatmap <- function(all_patients_result, title) {
-  my_fun <- function(p) {                     
+  my_fun <- function(p) {
     asterisks_vec = p
     asterisks_vec[p<=0.05 & p>0.01] = "*"
     asterisks_vec[p<=0.01 & p > 0.001] = "**"
@@ -24,21 +24,21 @@ sig_heatmap <- function(all_patients_result, title) {
   }
   asterisks = all_patients_result
   asterisks[] <- lapply(all_patients_result, my_fun) #replace significant values with asterisks
-  
-  
-  
+  print("this is the new version")
+
+
   all_patients_result = -log10(all_patients_result)
   paletteFunc <- colorRampPalette(c("white","navy"));
-  
+
   palette <- paletteFunc(100)
-  
+
   print(
     pheatmap(all_patients_result,
              cluster_rows = T,
              cluster_cols = T,
-             show_rownames = TRUE, 
+             show_rownames = TRUE,
              color = palette,
-             # breaks = seq(0,20,0.2), 
+             # breaks = seq(0,20,0.2),
              number_color = "grey30",
              main = title,
              display_numbers = asterisks,
@@ -47,5 +47,5 @@ sig_heatmap <- function(all_patients_result, title) {
              # legend_labels = breaks_labels
     )
   )
-  
+
 }
