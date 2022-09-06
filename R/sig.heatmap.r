@@ -24,7 +24,7 @@ sig_heatmap <- function(all_patients_result, title) {
   }
   asterisks = all_patients_result
   asterisks[] <- lapply(all_patients_result, my_fun) #replace significant values with asterisks
-  print("this is the new version")
+  print("this is the new version 2")
 
 
   all_patients_result = -log10(all_patients_result)
